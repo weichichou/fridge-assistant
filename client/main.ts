@@ -1,3 +1,5 @@
+import Quagga from 'quagga';
+
 let _scannerIsRunning = false;
 
 function startScanner() {
@@ -102,6 +104,7 @@ function startScanner() {
       "Barcode detected and processed : [" + result.codeResult.code + "]",
       result
     );
+    Quagga.stop();
   });
 }
 
