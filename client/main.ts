@@ -1,4 +1,5 @@
-import Quagga from 'quagga';
+import Quagga from "quagga";
+import list from "./list";
 
 let _scannerIsRunning = false;
 
@@ -104,8 +105,18 @@ function startScanner() {
       "Barcode detected and processed : [" + result.codeResult.code + "]",
       result
     );
+    checkItemExist(result.codeResult.code);
+
     Quagga.stop();
   });
+}
+
+function checkItemExist(barcode: string): void {
+  if (list.hasOwnProperty(barcode)) {
+    window.alert("what is the expire date?");
+  } else {
+    window.alert("add new item");
+  }
 }
 
 // Start/stop scanner
