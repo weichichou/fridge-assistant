@@ -13,6 +13,14 @@ const items = [
 ];
 "";
 
-app.get("/", (req, res) => res.redirect("/items"));
+//app.get("/", (req, res) => res.redirect("/items"));
+app.get("/items", (req, res) => {
+  res.json({ data: items });
+});
+app.get("/items/:itemBarcode", (req, res) => {
+  const itemBarcode = req.params.barcode;
+  const item = items.find((i) => i.barcode == itemBarcode);
+  res.json(item);
+});
 
 app.listen(port, () => console.log(`Listen on port ${port}`));
