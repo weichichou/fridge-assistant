@@ -4,8 +4,8 @@ export const sequelize = new Sequelize(
   "postgres://postgres:secret@localhost:5432/postgres"
 );
 
-class Item extends Model {
-  public barcode!: number;
+export class Item extends Model {
+  public barcode!: string;
   public name!: string;
   public expireDate!: string | null; // for nullable fields
 }
@@ -13,11 +13,11 @@ class Item extends Model {
 Item.init(
   {
     barcode: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     name: {
-      type: new DataTypes.STRING(128),
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     expireDate: {

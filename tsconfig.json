@@ -4,7 +4,7 @@
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "module": "commonjs",
-    "target": "es5",
+    "target": "ES6",
     "jsx": "react",
     "allowJs": true,
     "esModuleInterop": true //The esModuleInterop flag is described as: "Emit __importStar and __importDefault helpers for runtime babel ecosystem compatibility and enable --allowSyntheticDefaultImports for typesystem compatibility."
