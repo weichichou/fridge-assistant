@@ -4,42 +4,40 @@ export const sequelize = new Sequelize(
   "postgres://postgres:secret@localhost:5432/postgres"
 );
 
-class User extends Model {
-  public id!: number; // Note that the `null assertion` `!` is required in strict mode.
+class Item extends Model {
+  public barcode!: number;
   public name!: string;
-  public preferredName!: string | null; // for nullable fields
+  public expireDate!: string | null; // for nullable fields
 }
 
-User.init(
+Item.init(
   {
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
+    barcode: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     name: {
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
-    preferredName: {
-      type: new DataTypes.STRING(128),
+    expireDate: {
+      type: DataTypes.DATE,
       allowNull: true,
     },
   },
   {
-    tableName: "users",
+    tableName: "items",
     sequelize, // passing the `sequelize` instance is required
   }
 );
 
-async function doStuffWithUserModel() {
-  const newUser = await User.create({
-    name: "Johnny",
-    preferredName: "John",
-  });
-  console.log(newUser.id, newUser.name, newUser.preferredName);
+// async function doStuffWithItemModel() {
+//   const newItem = await Item.create({
+//     name: "Johnny",
+//   });
+//   // console.log(newItem.id, newItem.name, newItem.preferredName);
 
-  const foundUser = await User.findOne({ where: { name: "Johnny" } });
-  if (foundUser === null) return;
-  console.log(foundUser.name);
-}
+//   const foundItem = await Item.findOne({ where: { name: "Johnny" } });
+//   if (foundItem === null) return;
+//   console.log(foundItem.name);
+// }
